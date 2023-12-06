@@ -1,0 +1,6 @@
+1. generate the ssh key to connect without password
+
+ssh-keygen -t rsa -b 2048
+then copy the file.pub to server
+
+
