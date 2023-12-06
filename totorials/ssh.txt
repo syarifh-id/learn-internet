@@ -1,6 +1,48 @@
-1. generate the ssh key to connect without password
+SSH merupakan singkatan dari "Secure Shell," dan ini adalah protokol jaringan kriptografi yang memberikan cara aman untuk mengakses dan mengelola perangkat dan sistem jaringan melalui jaringan yang mungkin tidak aman. SSH banyak digunakan untuk administrasi jarak jauh pada server dan komunikasi aman antar sistem.
 
-ssh-keygen -t rsa -b 2048
-then copy the file.pub to server
+Sisi server
+
+1. install SSH server
+
+on linux :
+	sudo apt-get update
+	sudo apt-get install openssh-server
+
+2. Basic Configuratin
+
+Open :
+
+	sudo nano /etc/ssh/sshd_config
+
+Change Port 
+
+	Port 2222
+
+Root login permission
+
+	PermitRootLogin no
+
+Disable password login
+
+	PasswordAuthentication no
+
+restart SSh server
+	sudo service ssh restart
+	atau
+	sudo systemctl restart ssh
+
+
+To connect
+
+	ssh username@alamat_ip -p port
+
+Clien Side 
+
+Generate the ssh key to connect without password
+
+	ssh-keygen -t rsa -b 2048
+
+then copy the yourKey.pub to server on folder home/$user/.ssh
+Make file authorized_key And Paste the key there
 
 
