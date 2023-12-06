@@ -38,6 +38,22 @@ To connect
 
 Clien Side 
 
+Ya, benar. Perintah ssh-keygen digunakan pada sisi klien untuk menghasilkan sepasang kunci SSH, yaitu kunci pribadi dan kunci publik. Kunci pribadi biasanya disimpan di komputer klien, sementara kunci publik akan disalin ke server yang akan diakses.
+
+Berikut adalah peran masing-masing kunci:
+
+    Kunci Pribadi (Private Key):
+        Disimpan di komputer klien.
+        Dijaga dengan sangat aman dan tidak boleh dibagikan atau diketahui oleh orang lain.
+        Digunakan untuk mengenkripsi data di sisi klien.
+
+    Kunci Publik (Public Key):
+        Dikirim dan disimpan di server yang akan diakses oleh klien.
+        Tidak rahasia dan bisa dibagikan ke berbagai server atau sistem yang ingin Anda akses tanpa perlu memberikan kata sandi.
+        Digunakan oleh server untuk mendekripsi data yang dienkripsi oleh kunci pribadi klien.
+
+Dengan menggunakan pasangan kunci ini, proses otentikasi dapat terjadi tanpa perlu memasukkan kata sandi setiap kali Anda mencoba terhubung ke server SSH. Sebagai gantinya, kunci publik di server akan mencocokkan dengan kunci pribadi di sisi klien, memberikan akses tanpa perlu memasukkan kata sandi. Ini meningkatkan keamanan dan kenyamanan saat mengelola koneksi SSH.
+
 Generate the ssh key to connect without password
 
 	ssh-keygen -t rsa -b 2048
