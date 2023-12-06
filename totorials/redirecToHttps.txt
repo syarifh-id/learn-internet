@@ -3,3 +3,5 @@ add to .htaccess file to redirec http to https automaticly
  RewriteEngine On  
  RewriteCond %{HTTPS} off  
  RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]  
+
+
