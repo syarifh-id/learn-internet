@@ -62,3 +62,17 @@ then copy the yourKey.pub to server on folder home/$user/.ssh
 Make file authorized_key And Paste the key there
 
 
+sshd anvance Configuratin
+
+mambatasi jumlah percobaan login
+	MaxAuthTries 3
+menentukan user yang diijinkan
+	AllowUsers user1 user2
+menentukan user yang di tolak
+	DenyUsers user3 user4
+untuk grup
+AllowGroups sshusers
+
+menentukan apakah login langsung sebagai root diizinkan. Disarankan untuk diatur sebagai "prohibit-password" atau "without-password" jika root login diperlukan.
+
+PermitRootLogin prohibit-password
