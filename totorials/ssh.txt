@@ -76,3 +76,38 @@ AllowGroups sshusers
 menentukan apakah login langsung sebagai root diizinkan. Disarankan untuk diatur sebagai "prohibit-password" atau "without-password" jika root login diperlukan.
 
 PermitRootLogin prohibit-password
+
+
+Opsi Pada SSh
+
+ssh -l username hostname
+untuk menentukan username yang akan login pada hosting
+
+ssh -p 2222 hostname
+Untuk menentukan port pada SSh server
+
+ssh -i /path/to/private-key username@hostname
+memilih key yang akan digunakan untuk autentikasi
+
+ssh -X username@hostname
+gika ingin meneruskan x11, untuk koneksi gui melalui ssh
+
+ssh -v username@hostname
+-v, -vv, -vvv: Memperluas tingkat verbosity (kebisingan) untuk mendapatkan informasi yang lebih rinci saat koneksi dibuat
+
+
+
+Opsi Yang lebih Advance
+
+-L [bind_address:]port:host:hostport: Meneruskan port lokal ke server jarak jauh.
+ssh -L 8080:localhost:80 username@hostname
+
+-R [bind_address:]port:host:hostport: Meneruskan port dari server jarak jauh ke lokal.
+ssh -R 8080:localhost:80 username@hostname
+
+-C: Mengaktifkan kompresi data selama transfer.
+ssh -C username@hostname
+
+-N: Mencegah perintah shell dari dieksekusi setelah login, sering digunakan dengan penerusan port.
+ssh -N -L 8080:localhost:80 username@hostname
+
