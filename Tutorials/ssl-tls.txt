@@ -1,3 +1,5 @@
+Apa itu ssl
+
 SSL (Secure Socket Layer) dan TLS (Transport Layer Security) adalah protokol keamanan yang digunakan untuk mengamankan komunikasi data antara pengguna dan server di internet. Kedua protokol ini berfungsi untuk menyandikan data yang dikirimkan antara pengguna dan server sehingga informasi sensitif, seperti kata sandi, informasi kartu kredit, dan data pribadi lainnya, tetap aman dan terlindungi dari akses yang tidak sah.
 
 SSL (Secure Socket Layer): SSL adalah protokol keamanan yang dikembangkan untuk menyediakan lapisan keamanan tambahan di atas protokol TCP (Transmission Control Protocol). Namun, karena masalah keamanan tertentu, SSL telah digantikan oleh TLS.
