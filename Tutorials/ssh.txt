@@ -111,3 +111,28 @@ ssh -C username@hostname
 -N: Mencegah perintah shell dari dieksekusi setelah login, sering digunakan dengan penerusan port.
 ssh -N -L 8080:localhost:80 username@hostname
 
+Untuk menggunakan kunci tertentu pada perintah ssh, kita dapat menggunakan opsi -i. Opsi ini digunakan untuk menentukan file kunci yang akan digunakan. Misalnya, jika kita memiliki file kunci bernama mykey.pem, kita dapat menggunakan opsi -i sebagai berikut:
+
+ssh -i mykey.pem user@host
+
+Perintah ini akan menggunakan kunci mykey.pem untuk melakukan autentikasi ke host user@host.
+
+Jika kita ingin menggunakan kunci publik tertentu, kita dapat menggunakan opsi -o IdentityFile. Opsi ini digunakan untuk menentukan file kunci publik yang akan digunakan. Misalnya, jika kita memiliki file kunci publik bernama mykey.pub, kita dapat menggunakan opsi -o IdentityFile sebagai berikut:
+
+ssh -o IdentityFile=mykey.pub user@host
+
+Perintah ini akan menggunakan kunci publik mykey.pub untuk melakukan autentikasi ke host user@host.
+
+Berikut adalah contoh penggunaan opsi -i dan -o IdentityFile:
+
+# Menggunakan kunci pribadi
+ssh -i mykey.pem user@host
+
+# Menggunakan kunci publik
+ssh -o IdentityFile=mykey.pub user@host
+
+Selain opsi -i dan -o IdentityFile, kita juga dapat menggunakan opsi -l untuk menentukan nama pengguna yang akan digunakan. Misalnya, jika kita ingin menggunakan kunci mykey.pem untuk melakukan autentikasi sebagai pengguna admin, kita dapat menggunakan opsi -l sebagai berikut:
+
+ssh -i mykey.pem -l admin user@host
+
+Perintah ini akan menggunakan kunci mykey.pem untuk melakukan autentikasi sebagai pengguna admin ke host user@host.
