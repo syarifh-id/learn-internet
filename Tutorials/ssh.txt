@@ -136,3 +136,19 @@ Selain opsi -i dan -o IdentityFile, kita juga dapat menggunakan opsi -l untuk me
 ssh -i mykey.pem -l admin user@host
 
 Perintah ini akan menggunakan kunci mykey.pem untuk melakukan autentikasi sebagai pengguna admin ke host user@host.
+
+Untuk generate key dengan ekstensi PEM, kita dapat menggunakan perintah ssh-keygen. Perintah ini memiliki opsi -m PEM untuk menentukan bahwa kunci yang akan dihasilkan akan disimpan dalam format PEM.
+
+Berikut adalah contoh penggunaan perintah ssh-keygen untuk generate key dengan ekstensi PEM:
+
+ssh-keygen -m PEM
+
+Perintah ini akan menghasilkan pasangan kunci RSA dengan panjang 2048 bit. Kunci pribadi akan disimpan dalam file id_rsa dan kunci publik akan disimpan dalam file id_rsa.pub.
+
+Jika kita ingin menentukan panjang kunci yang berbeda, kita dapat menggunakan opsi -b. Misalnya, untuk menghasilkan kunci RSA dengan panjang 4096 bit, kita dapat menggunakan perintah berikut:
+
+ssh-keygen -b 4096 -m PEM
+
+Kita juga dapat menentukan nama untuk kunci pribadi dan kunci publik. Misalnya, untuk menghasilkan kunci pribadi bernama mykey.pem dan kunci publik bernama mykey.pub, kita dapat menggunakan perintah berikut:
+
+ssh-keygen -f mykey.pem -m PEM
