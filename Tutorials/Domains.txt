@@ -1,0 +1,12 @@
+Anda dapat membuat subdomain menggunakan Zone Editor di cPanel. Untuk melakukannya, ikuti langkah-langkah berikut:
+
+    Di menu samping kiri, klik Domains.
+    Klik Zone Editor.
+    Pilih domain yang ingin Anda buat subdomainnya.
+    Klik Add Record.
+    Pilih Type sebagai CNAME.
+    Masukkan nama subdomain yang Anda inginkan di kolom Host.
+    Masukkan nama domain Anda di kolom Target.
+    Klik Create.
+
+Setelah Anda membuat subdomain menggunakan Zone Editor, Anda harus memperbarui DNS Anda agar subdomain dapat diakses.
