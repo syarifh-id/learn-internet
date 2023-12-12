@@ -42,3 +42,10 @@ Namun, ada juga beberapa kekurangan IMAP:
     Tidak mendukung penggunaan offline: IMAP tidak mendukung penggunaan offline, sehingga Anda tidak dapat mengakses email Anda jika Anda tidak memiliki koneksi internet.
 
 Secara keseluruhan, IMAP adalah protokol yang baik untuk digunakan jika Anda mengakses email dari beberapa perangkat atau ingin mengatur email Anda di server. Namun, jika Anda hanya mengakses email dari satu perangkat dan ingin menghemat ruang penyimpanan di perangkat Anda, Anda sebaiknya menggunakan POP3.
+
+
+Layanan email yang digunakan pada cPanel secara default adalah IMAP. IMAP adalah protokol yang memungkinkan pengguna untuk mengakses email dari berbagai perangkat, seperti komputer, ponsel, atau tablet. IMAP menyimpan email di server, sehingga pengguna dapat mengaksesnya dari mana saja.
+
+Pop3 adalah protokol yang memungkinkan pengguna untuk mengunduh email dari server ke perangkat lokal. Pop3 lebih cocok untuk pengguna yang hanya mengakses email dari satu perangkat.
+
+Smtp adalah protokol yang digunakan untuk mengirim email. Smtp tidak digunakan untuk menerima email.
