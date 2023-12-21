@@ -1,3 +1,16 @@
+Tentu, mari kita diskusi tentang domain! Domain merujuk pada alamat unik yang digunakan untuk mengidentifikasi sebuah situs web di internet. Domain biasanya terdiri dari dua bagian utama: nama domain dan ekstensi domain.
+
+Nama Domain:
+
+Nama domain adalah bagian yang dapat disesuaikan sesuai keinginan pemilik situs web. Contoh: dalam www.google.com, "google" adalah nama domain.
+Nama domain bisa mencerminkan identitas merek, topik situs web, atau tujuan lainnya.
+Ekstensi Domain:
+
+Ekstensi domain adalah bagian yang terletak setelah nama domain dan biasanya menunjukkan jenis atau sifat situs web tersebut. Contoh: dalam www.google.com, ".com" adalah ekstensi domain.
+Beberapa ekstensi domain umum melibatkan TLD (Top-Level Domain) seperti .com, .net, .org, .edu, .gov, dan banyak lagi.
+
+Domain diatur oleh organisasi yang disebut Internet Corporation for Assigned Names and Numbers (ICANN). ICANN adalah badan nirlaba yang memiliki tanggung jawab utama dalam mengelola dan mengkoordinasikan sistem nama domain di seluruh dunia.
+
 Anda dapat membuat subdomain menggunakan Zone Editor di cPanel. Untuk melakukannya, ikuti langkah-langkah berikut:
 
     Di menu samping kiri, klik Domains.
