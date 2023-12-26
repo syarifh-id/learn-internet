@@ -1,0 +1,92 @@
+Generate an SSH key
+Run the following command to generate an SSH key file:
+
+ssh-keygen -t rsa -f ~/.ssh/repo -b 4096 -C "[email protected]"
+Note:
+Replace repo with the name of the remote repository, username with your cPanel username, and example.com with your cPanel domain name.
+
+For example, if your repository name is testing, your cPanel username is cptest, and your cPanel domain name is cptest.tld, run this command:
+
+ssh-keygen -t rsa -f ~/.ssh/testing -b 4096 -C "[email protected]"
+Warning:
+This command contains several parts. If you alter any part of the command, you may affect the performance of your SSH key.
+
+The -t flag specifies the type of algorithm for your SSH key.
+The -f flag determines the name for your public and private keys. With the -f flag, there is no need to specify the public key name as it will always be the same name as the private key, but with .pub as the suffix.
+The -b flag specifies the size of the SSH key in bits.
+The -C flag specifies a comment to add to your public key. This is helpful when identifying which public keys you have authorized in a remote system, so it is common practice to add your email address as the comment.
+After you run this command, the system will prompt you to enter a passphrase. Do not enter a passphrase, and press Enter to continue.
+
+Create the SSH Configuration File
+To create the SSH configuration file, perform the following steps:
+
+Run the following command to create the SSH configuration file:
+touch ~/.ssh/config
+Update the permissions of the ~/.ssh/config file to 0600:
+chmod 0600 ~/.ssh/config
+Run the following command to verify the cPanel user account:
+chown cpanelusername:cpanelusername ~/.ssh/config
+Open ~/.ssh/config with the text editor of your choice, and add the following lines where testing is the name of your repository:
+Host remote-git-repo-domain.tld
+    IdentityFile ~/.ssh/testing
+Note:
+If you want to use this private key when connecting to any remote host via SSH, you may use an asterisk character (*) as the host instead of a specific domain name. Otherwise, use the domain name of your remote Git repository provider. You can find this domain name within the SSH repository URL.
+You must use the path to the private key generated above for the IdentityFile.
+Save the file.
+Register your SSH key with the private repository host
+Note:
+For information about how to register your SSH key with another private repository host, consult that host’s website or documentation.
+Some repository hosts, such as Bitbucket, do not allow you to configure write access for your access keys.
+To register an SSH key with GitHub, perform the following steps:
+
+Log in to your GitHub account.
+Navigate to your private repository.
+In the top right corner of the page, click Settings. A new page will appear.
+In the left side menu, click Deploy keys. A new page will appear.
+In the top right corner of the page, click Add deploy key. A new page will appear.
+In the Title text box, enter a display name for the key.
+In the Key text box, paste the entire public SSH key from the ~/.ssh/repo.pub file you created in the previous step. For example, if you created a key with ~/.ssh/testing as the key file name, the public key would be in ~/.ssh/testing.pub.
+If you want to push code from your cPanel account to your GitHub account, select the Allow write access checkbox.
+Note:
+If you do not select this checkbox, you can only deploy changes from your GitHub repository to the cPanel-hosted repository.
+
+Click Add key.
+Test the SSH key
+To test your SSH key, run the following command:
+
+ssh -i ~/.ssh/repo -T git@example.com
+Note:
+Replace repo with the name of the repository and example.com with the private repository’s domain name you input when you created the SSH key.
+
+For example, if you input testing as the repo and github.com as the repository host’s domain name in the previous step, run this command:
+
+ssh -i ~/.ssh/testing -T git@github.com
+Set up access to multiple repositories
+To create an SSH key for each of your repositories, follow the steps outlined above. After you have added the keys to the remote repositories, create a local ~/.ssh/config file to alias each of the keys to their corresponding repository names.
+
+For example, if you have two repos configured on GitHub, testing and testing2, and both your cPanel and GitHub usernames are cptest, create or modify the ~/.ssh/config file with these contents:
+
+Host github.com-testing
+        Hostname github.com
+        IdentityFile=/home/cptest/.ssh/testing
+
+Host github.com-testing2
+        Hostname github.com
+        IdentityFile=/home/cptest/.ssh/testing2
+Clone a repository: single repository on the remote host
+To clone a repository when you have a single repository configured on the remote repository host, run this command:
+
+git clone git@example.com:username/repo.git
+Note:
+Replace example.com with the domain name of the remote private repository, username with your username on the remote repository host, and repo with the name of the repository.
+
+For example, if your GitHub username is cptest, and the repository name is testing, run this command:
+
+git clone git@github.com:cptest/testing.git
+Clone a repository: multiple repositories on the remote host
+To clone a repository when you have multiple repositories configured on the remote repository host and have created separate SSH keys and the ~/.ssh/config file as referenced above, run this command:
+
+git clone git@Host:username/repo.git
+For example, if your GitHub username is cptest, and the repository name is testing2, run this command:
+
+git clone git@github.com-testing2:cptest/testing2.git
