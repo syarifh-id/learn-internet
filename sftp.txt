@@ -1,0 +1,9 @@
+In this article, we’ll show you how to connect to an SFTP server via FileZilla. Before following the steps below, make sure you have downloaded FileZilla and have the program open in front of you.
+
+    Before you can login with SFTP, you also need to activate SFTP or SSH access in your one.com control panel. If you’re unsure of how to do this, you can find help in this guide.
+
+    In the field Host, enter ssh.yourdomain.com, substituting “yourdomain.com” with your own domain name. Write in lowercase only, and do not use “www” in front of the domain name.
+    Enter your Username, which is simply your domain name (yourdomain.com), also without “www”.
+    Enter your Password. This should be the one you choose for SFTP/SSH when activating access in the control panel.
+    Enter the Port number. For SFTP, this is 22.
+    Click on Quickconnect or press Enter to connect to the server.
