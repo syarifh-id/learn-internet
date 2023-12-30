@@ -11,6 +11,14 @@ Beberapa ekstensi domain umum melibatkan TLD (Top-Level Domain) seperti .com, .n
 
 Domain diatur oleh organisasi yang disebut Internet Corporation for Assigned Names and Numbers (ICANN). ICANN adalah badan nirlaba yang memiliki tanggung jawab utama dalam mengelola dan mengkoordinasikan sistem nama domain di seluruh dunia.
 
+Berikut adalah langkah-langkah untuk menambahkan subdomain di cPanel:
+
+Login ke cPanel: Anda bisa membuka cPanel sesuai URL yang diberikan saat mendaftar layanan hosting1.
+Pilih Domains: Di halaman cPanel, cari tab Domains lalu pilih menu Domains1.
+Buat Subdomain Baru: Di dalam menu tersebut, klik Create A New Domain. Kemudian masukkan nama dan subdomain yang Anda inginkan1.
+Ketik Nama Subdomain: Ketik nama subdomain baru yang ingin dibuat dan hapus tanda centang pada opsi Share document root1.
+Submit: Klik tombol Submit2.
+
 Anda dapat membuat subdomain menggunakan Zone Editor di cPanel. Untuk melakukannya, ikuti langkah-langkah berikut:
 
     Di menu samping kiri, klik Domains.
