@@ -1,0 +1,229 @@
+How to Configure the Apache Load Balancer
+Last Updated July 12, 2023
+This scenario describes the tasks that a Privileged Identity Manager
+administrator completes to configure Enterprise Management Servers for load balancing using Apache HTTPD.
+How to Configure the Apache Load Balancer
+Load balancing evenly distributes a task among multiple resources. Load balancing increases the network utilization, reliability, and ultimately increases the user satisfaction.
+The following illustration shows the required steps to configure load balancing for multiple Enterprise Management Servers using the Apache Web Server.
+ 
+Configure Apache Load Balancer
+Configure Apache Load Balancer
+Perform the following steps:
+
+    Prerequisites
+    Modify the Apache Web Server Configuration File
+    Create Apache Certificate and Private Key
+    Modify the ac-environment.properties File
+    Enable CA IdentityMinder Management Console
+    Modify The Base URL
+    Verify User Access to Apache Load Balancing Server
+
+Prerequisites
+Verify that the following items are in place before you configure an Apache load balancer:
+
+    Installed Apache 2.2.x Web Server or higher on a separate computer.
+    Allocated a static IP to the load-balancing server.
+
+This scenario uses the following server names:
+
+    APACHELB, as the load-balancing server.
+    entm1.example.com, as the primary Enterprise Management Server.
+    entm2.example.com, as the load balancing Enterprise Management Server.
+
+In this scenario, we assume that you have installed Apache load-balancer, primary Enterprise Management, and load balancing Enterprise Management Server on a Windows system. In case, you have installed Apache load-balancer on a Linux system then consider the port 8443 instead of the port 18443.
+Modify the Apache Web Server Configuration File
+Apache HTTP Server uses httpd.conf as the configuration file. The file stores information about various functions of the server. You can edit these functions by adding or uncommenting, thus setting values for each directive.
+Perform this procedure on the Apache load-balancing server.
+Follow these steps:
+
+    Log on to load-balancing server as a user with administrative privileges.
+    Open a Command Prompt window and navigate to the Apache_Home\conf directory.
+    Open the httpd.conf file for editing and add or uncomment the following lines:
+    LoadModule headers_module modules/mod_headers.so
+    LoadModule proxy_module modules/mod_proxy.so
+    LoadModule proxy_balancer_module modules/mod_proxy_balancer.so
+    LoadModule proxy_http_module modules/mod_proxy_http.so
+    LoadModule ssl_module modules/mod_ssl.so
+    Copy and paste the following lines to the end of the httpd.conf file:
+    ## you may uncomment "Listen 18080" if you wish to allow http connections.
+    #Listen 18080
+    For https(ssl) connections)
+    Listen 18443 
+    SSLRandomSeed startup builtin
+    SSLRandomSeed connect builtin
+    ## this allows for sticky sessions (the following is one line, this might break when you paste this text)
+    Header add Set-Cookie "ROUTEID=.%{BALANCER_WORKER_ROUTE}e; path=/" env=BALANCER_ROUTE_CHANGED
+    ## The load balancing configuration.
+    ## You have to add your own BalancerMember and enumerate their routes sequentially as below.
+    <Proxy balancer://ac-cluster>
+    Order Deny,Allow
+    Allow from all 
+    BalancerMember https://ENTM1.example.com:18443 route=1
+    BalancerMember https://ENTM2.example.com:18443 route=2 
+    ProxySet stickysession=ROUTEID
+    </Proxy>
+    ## You may uncomment this VirtualHost if you wish to allow http connections.
+    # NameVirtualHost 172.16.0.0:18080
+    # <VirtualHost 172.16.0.0:18080>
+    # ServerAlias lb
+    # ServerName APACHELB
+    # ProxyPass / balancer://ac-cluster/ lbmethod=byrequests stickysession=ROUTEID
+    ## You have to specify one for each of your primary and load balancing Enterprise Management Server.
+    # ProxyPassReverse / http://ENTM1.example.com:18080/
+    # ProxyPassReverse / http://ENTM2.example.com:18080/
+    # </VirtualHost> 
+    ## Https connections. (of the apache)
+    ## You have to provide your own certificates.
+    ## Please read the documentation on how to do so.
+    NameVirtualHost APACHELB:18443
+    <VirtualHost APACHELB:18443>
+    SSLEngine On 
+    SSLProxyEngine On
+    # If you are using Apache 2.4.x or higher, the SSLProxyCheckPeerCN and SSLProxyCheckPeerExpire parameters are by default On. Include these two parameters in the file with value set to off.
+    SSLProxyCheckPeerCN off
+    SSLProxyCheckPeerExpire off 
+    ## The server name must be the one you specified in the certificate!
+    ServerName APACHELB
+    SSLCertificateFile "C:\Program Files\Apache Software Foundation\Apache2.2\cred\my-server.cert"
+    SSLCertificateKeyFile "C:\Program Files\Apache Software Foundation\Apache2.2\cred\my-server.key"
+    ProxyPass / balancer://ac-cluster/ lbmethod=byrequests stickysession=ROUTEID
+    ## You have to specify one for each of your primary and load balancing Enterprise Management Server.
+    ProxyPassReverse / https://ENTM1.example.com:18443/
+    ProxyPassReverse / https://ENTM2.example.com:18443/
+    </VirtualHost>
+    Locate the following text:
+    ## For https(ssl) connections
+        Add the line, as shown in the following example:
+        Listen 18443
+    Locate the following text:
+    BalancerMember https://ENTM1.example.com:18443 route=1
+    BalancerMember https://ENTM2.example.com:18443 route=2
+        Replace ENTM1 and ENTM2 with the primary and load balancing FQDN.
+    Locate the following text:
+    NameVirtualHost APACHELB:18443
+    <VirtualHost APACHELB:18443>
+        Replace APACHELB with the name of the load balancing computer.
+    Locate the following text:
+    ServerName APACHELB
+        Replace APACHELB with the name of the load balancing computer.
+    Create the Apache certificate and private key
+     .
+    Locate the following text:
+    ProxyPassReverse / https://ENTM1.example.com:18443/
+    ProxyPassReverse / https://ENTM2.example.com:18443/
+        Replace ENTM1 and ENTM2 with the primary and load balancing FQDN.
+    Save the file and close the text editor.
+
+The Apache web server configuration file is configured. Continue with the next step of creating an Apache server certificate and a private key.
+For more information about installing and configuring the Enterprise Management Server for high availability, see the Privileged Identity Manager Implementation Guide.
+Create Apache Certificate and Private Key
+You can verify a secure transaction between web servers by using the SSL protocol. You create a server certificate and a private key by using the OpenSSL utility.
+Perform this procedure on the Apache load-balancing server.
+Follow these steps:
+
+    Open a Command Prompt window.
+    Navigate to the following directory:
+    Apache_installation
+    \bin
+    Create a certificate request (CSR) file with the following command:
+    openssl req -config <file_path_of_openssl.cnf
+    > -new -out my-server.csr
+        -config
+        Specifies the alternative configuration file. This option overrides the compile-time filename or any specified in the OPENSSL_CONF environment variable.
+        -new
+        Specifies to generate a new certificate request.
+        Note
+        : The new
+        parameter generates an RSA private key using the information that is specified in the configuration file when you omit the key
+        option.
+        -out
+        Specifies the output filename for writing a certificate.
+    Create a private key file with the following command:
+    openssl rsa -in privkey.pem -out my-server.key
+        -in
+        Specifies the input filename for reading a key. If the key is encrypted, you are prompted for a pass phrase.
+        -out
+        Specifies the output filename for writing a key. If the key is encrypted, you are prompted for a pass phrase.
+        The output filename and input filename must be different.
+    Create an X.509 digital certificate from the certificate request. The following command line creates a certificate that is signed with the CA private key:
+    openssl x509 -in my-server.csr -out my-server.cert -req -signkey my-server.key -days 365
+        -in
+        Specifies the input filename for reading a certificate.
+        -out
+        Specifies the output filename for writing a certificate.
+        -req
+        Specifies a certificate request. By default, a certificate is expected on input.
+        -signkey
+        Specifies the input file to be self-signed using the supplied private key.
+        -days
+        Specifies the number of days that the certificate is valid for.
+    Create a folder in the Apache_installation directory (for example, Apache_installation\Credentials).
+    Copy the following files from the Apache_installation\bin
+    directory to the Apache_installation\Credentials
+    folder:
+        My-server.cert
+        My-server.key
+        My-server.csr
+    Verify that the file path for SSLCertificateFile and SSLCertificateKeyFile has been updated.
+
+The server certificate and private key are added. Continue with the next step of modifying the ac-environment.properties file.
+Modify the ac-environment.properties File
+Modify the ac-environment.properties file on all the primary and load balancing Enterprise Management Servers.
+Follow these steps:
+
+    Log on to the Enterprise Management Server with administrative privileges.
+    Open a command prompt window.
+    Navigate to the following directory and open the ac-environment.properties file with a text editor:
+    JBoss_home/
+    server/default/deploy/IdentityMinder.ear/user_console.war/META-INF/ac-environment.properties
+    Set Apache load-balancing server FQDN as the @baseurl
+    .
+    For example:
+    @baseurl=https\://APACHELB:18443/iam
+    Save the file and close the text editor.
+
+The ac-environment.properties file is configured. Continue with the next step of enabling the CA IdentityMinder Management Console.
+For security reasons, disable the CA IdentityMinder Management Console after you modify the base URL.
+Enable CA IdentityMinder Management Console
+Enable the CA IdentityMinder Management Console to allow access to the Apache load-balancing server on all the primary and load balancing Enterprise Management Servers.
+Follow these steps:
+
+    Log on to the Enterprise Management Server with administrative privileges.
+    Open a command prompt window.
+    Navigate to the following directory and open the web.xml file with a text editor:
+    JBoss_home/
+    server/default/deploy/IdentityMinder.ear/management_console.war/WEB-INF/web.xml
+    Search for the following section:
+    AccessFilter
+    In the <param-value> field, change the value to True.
+    Save the file and close the text editor.
+    Restart the JBoss Application Server.
+
+The web.xml file is configured. Continue with the next step of modifying the base URL.
+For security reasons, disable the CA IdentityMinder Management Console after you modify the base URL.
+Modify The Base URL
+Replace the base URL in the Management Console with the Apache load-balancing server on all primary and load balancing Enterprise Management Servers.
+Follow these steps:
+
+    Open the Management Console, by using the following URL:
+    http://enterprise_host:port/idmmanage
+    The Management Console screen appears.
+    Select Environments, ac-env.
+    The Environment Properties window opens.
+    Replace the Base URL with the Apache load-balancing server FQDN.
+    For example: https://APACHELB:18443/iam
+    Click Save.
+    Restart the Environment.
+
+The base URL for the environment is now modified to reflect the Apache load-balancing server.
+For security reasons, disable the CA IdentityMinder Management Console after you modify the base URL.
+Verify User Access to Apache Load Balancing Server
+Verify that your Apache load balancing setup is working correctly by using the information in this topic.
+Follow these steps:
+
+    Open a web browser and enter the following URL, for your host:
+    https://APACHELB:18443/iam/ac
+    Log in using your credentials.
+    The Privileged Identity Manager Enterprise Management home page appears.
+
+If the Privileged Identity Manager Enterprise Management home page appears, you have successfully configured multiple Enterprise Management Servers for load balancing using the Apache Web Server.
