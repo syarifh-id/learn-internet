@@ -1,0 +1,62 @@
+Mengenal Dns Record.
+DNS Record atau Catatan DNS domain adalah data yang menyajikan pemetaan dan pengalamatan sebuah nama Domain internet. Data ini terdiri dari beberapa jenis dengan fungsi yang berbeda.
+
+Atau dalam bahasa seederhananya DNS record ini Berisi Sebuah alamat dan catatan mengenai Server yang terhubung Dengan domain, tentu kita juga dapat mengubah dan menambahkan DNS record tersebut
+
+Fungsi DNS Record.
+Setelah Kita mengenal DNS Record berikutnya kita juga perlu mengetahui apa sih fungsi-fungsi dari DNS record ini, Mengapa sangatlah penting ?
+
+Antara lain DNS record mempunyai fungsi Sebagai Berikut :
+
+Memberikan Informasi Tentang Alamat hosting.
+Memanage Domain Tanpa Nameserver.
+Menambahkan Fungsi DNS lain.
+Pada point nomor 3 yang kita maksud disini ialah menambahkan jenis record Lain yang akan kita bahas tuntas pada Artikel ini.
+
+Jenis-jenis DNS Record
+Seperti yang saya sampaikan di atas bahwa DNS record Memiliki Jenis-jenis yang cukup banyak. Oleh Sebab itu Akan Kita bahas satu persatu jenisnya, berikut Jenis-Jenis Dns record :
+
+1. A record
+A record ini Berisi IPv4. Berfungsi untuk memetakan domain atau subdomain ke IPv4 yang tercantum di Dalamnya. IPv4 adalah alamat IP 32 bit dengan format penulisan aaa.bbb.ccc.ddd.
+
+Misal jika kita ingin memetakan domain Jetorbit.com ke alamat IP 103.22.14.98 maka kita bisa mengisi A Record Dengan format : jetorbit.com. 14400 in A 103.22.14.98 dimana angka 14400 adalah TTL (Time To Live, Dalam satuan detik)
+
+Mengenal Dan Mengetahui Jenis-Jenis DNS Record
+2. AAAA record
+AAA Record ini Berisi IPv6. Berfungsi untuk memetakan domain atau subdomain ke IPv6 yang tercantum di Dalamnya. IPv6 adalah format IP terbaru yang terdiri dari 128bit. Format ini digunakan karena jumlah IPv4 yang Bisa dipetakan masih kurang dibanding dengan jumlah komputer yang terkoneksi ke internet dengan IP Public.
+
+3. CNAME Record
+CNAME record Biasa juga disebut sebagai ALIAS atau catatan nama kanonik membuat alias untuk nama domain. Domain yang di-alias-kan memiliki seluruh subdomain dan record DNS seperti aslinya.
+
+CNAME sering digunakan untuk mengarahkan beberapa domain atau subdomain ke webhosting yang sama. misal Untuk mengarahkan www.jetorbit.com ke jetorbit.com (tanpa www) digunakan CNAME dengan format www.jetorbit.com. 14400 IN CNAME jetorbit.com.com
+
+
+4. MX Record
+MX record berisi informasi lokasi mail server yang digunakan oleh domain tersebut, ini biasanya akan otomatis Terisi ketika kita menghubungkan domain ke layanan hosting menggunakan Nameserver
+
+5. PTR record
+PTR record atau biasa juga disebut RDNS (reverse DNS). tidak dicantumkan dalam DNS record di sebuah named Server.
+
+Pengaturan PTR dibuat khusus dan biasanya hanya bisa dilakukan oleh pemilik server.
+
+PTR Record kebalikan dari A record. Jadi dia berfungsi mengarahkan IP menjadi sebuah domain atau hostname. Dengan PTR Record, kita bisa mengetahui siapa pemilik IP tertentu.
+
+PTR Record sangat penting dalam setting mail server. Email yang terkirim dari sebuah server yang tidak memiliki PTR Record akan dianggap sebagai SPAM.
+
+6. NS record
+NS record atau catatan server nama memetakan sebuah nama domain ke dalam satu daftar dari server DNS untuk Domain tersebut. bergantung kepada record NS, contoh Record NS adalah Sebagai Berikut ns1.jetorbit.net dan Ns2.jetorbit.net
+
+7. SOA Record
+SOA record atau catatan otoritas awal (Start of Authority) mengacu server DNS yang menyediakan otorisasi Informasi tentang sebuah domain Internet
+
+Untuk SOA record ini berisi tentang Informasi Domain yang sedang terhubung pada layanan Server.
+
+8. SRV Record
+SRV record berisi informasi umum seputar Catatan Lokasi
+
+9.TXT Record
+TXT Record mengijinkan administrator untuk memasukan data acak ke dalam catatan DNS, catatan ini juga Digunakan di spesifikasi Sender Policy Framework.Txt record ini biasanya digunakan para developer untuk Memverifikasi domain mereka di search console.
+
+Untuk tambahan anda juga bisa membaca DNS recod yang terekam pada suatu domain pada https://www.ultratools.com/ 
+
+Kemudian anda masukan domain yang ingin anda track recordnya setelah klik go maka akan terlihat DNS record Pada domain yang berhasil di track
