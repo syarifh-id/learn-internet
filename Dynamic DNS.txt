@@ -1,0 +1,37 @@
+Dynamic DNS (DDNS) adalah sebuah sistem yang memungkinkan alamat IP dinamis diperbarui secara 
+otomatis dalam server DNS secara real-time. Ini berguna ketika Anda memiliki koneksi internet 
+dengan alamat IP yang berubah secara periodik atau tidak tetap, seperti yang sering terjadi pada 
+koneksi internet rumahan atau bisnis.
+
+Beberapa poin penting terkait Dynamic DNS:
+
+Alamat IP Dinamis:
+
+Beberapa penyedia layanan internet (ISP) memberikan alamat IP yang dapat berubah secara periodik 
+setiap kali perangkat terhubung ke internet. Ini dapat menjadi masalah jika Anda ingin mengakses 
+perangkat atau layanan di jaringan dari luar, karena Anda harus selalu mengetahui alamat IP terkini.
+Menggunakan Nama Domain:
+
+Dynamic DNS memungkinkan Anda mengaitkan nama domain yang mudah diingat dengan alamat IP 
+dinamis. Sebagai contoh, alih-alih mengakses perangkat dengan alamat IP numerik, Anda dapat 
+menggunakan nama domain seperti "myhomenetwork.ddns.net."
+Perangkat di Jaringan Lokal:
+
+Dynamic DNS sering digunakan untuk mengakses perangkat atau layanan di jaringan lokal dari jarak 
+jauh. Misalnya, Anda dapat mengakses kamera pengawas, server file, atau komputer pribadi di 
+rumah saat Anda tidak berada di sana.
+Pembaruan Otomatis:
+
+Software atau perangkat di jaringan akan secara otomatis memberitahu server Dynamic DNS setiap 
+kali alamat IP berubah. Ini dapat dilakukan dengan menginstal aplikasi khusus pada router atau 
+perangkat di jaringan yang mendukung Dynamic DNS.
+Layanan DDNS:
+
+Ada layanan DDNS yang disediakan oleh penyedia tertentu atau oleh perangkat keras jaringan 
+seperti router. Beberapa penyedia menawarkan layanan DDNS gratis, sementara yang lain 
+memerlukan biaya atau memiliki fitur-fitur tambahan.
+Keuntungan penggunaan Dynamic DNS termasuk kemampuan untuk mengakses perangkat di 
+jaringan lokal dari jarak jauh tanpa harus selalu memperhatikan perubahan alamat IP. Namun, 
+penting untuk memastikan bahwa pengaturan DDNS Anda diatur dengan benar dan bahwa 
+perangkat di jaringan mendukung atau terhubung ke layanan Dynamic DNS untuk memperbarui 
+informasi alamat IP secara otomatis.

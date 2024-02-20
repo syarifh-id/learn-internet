@@ -1,0 +1,16 @@
+##remove index.php on mediawiki
+
+
+.htaccess:
+----------
+RewriteEngine On
+RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI} !-f
+RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI} !-d
+RewriteRule ^(.*)$ %{DOCUMENT_ROOT}/index.php [L]
+
+
+LocalSettings.php:
+------------------
+## shorter URLs and removing index.php
+$wgArticlePath = "{$wgScriptPath}/$1";
+$wgUsePathInfo = true;
