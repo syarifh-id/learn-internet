@@ -1,0 +1,40 @@
+Here is the short version:
+
+Installation with Composer
+On a command line go to your MediaWiki installation directory and run these two commands
+
+COMPOSER=composer.local.json composer require --no-update mediawiki/chameleon-skin:~4.0
+composer update mediawiki/chameleon-skin --no-dev -o
+Then, open LocalSettings.php in an editor, and add the following lines:
+
+wfLoadExtension( 'Bootstrap' );
+wfLoadSkin( 'chameleon' );
+Optional: to set Chameleon as the default skin, find $wgDefaultSkin and amend it:
+
+$wgDefaultSkin='chameleon';
+Save the file. To verifying Chameleon was installed correctly, navigate to Special:Version on your wiki.
+
+If you run into problems, try the troubleshooting.
+
+Installation without Composer
+Install and enable the Bootstrap extension.
+
+Download Chameleon and place the file(s) in a directory called chameleon in your skins/ folder.
+
+Add the following code at the bottom of your LocalSettings.php:
+
+wfLoadSkin( 'chameleon' );
+To set Chameleon as the default skin, find $wgDefaultSkin and amend it:
+
+$wgDefaultSkin = 'chameleon';
+Done: Navigate to Special:Version on your wiki to verify that the skin is successfully installed.
+
+Update with Composer
+From your MediaWiki installation directory run composer update "mediawiki/chameleon-skin" --no-dev -o
+
+If you want to upgrade from Chameleon 2.x to 3.x, first edit composer.local.json. Change "mediawiki/chameleon-skin": "~2.0" to "mediawiki/chameleon-skin": "~3.0".
+
+De-installation with Composer
+Before de-installation make sure you secure (move, backup) any custom files you might want to retain.
+
+Remove the Chameleon skin from the composer.local.json file. Then run composer update "mediawiki/chameleon-skin" from the MediaWiki installation directory.

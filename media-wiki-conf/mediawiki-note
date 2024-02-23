@@ -1,5 +1,13 @@
-The Main Page is the page that the wiki goes to if no page is specified in parameters to index.php. It is also the page that one is taken to if one clicks on the logo or on the Main page item on the sidebar. The title at which the main page is accessed can be modified by changing MediaWiki:Mainpage. The term "main page" and its translations can still be accessed via the system message MediaWiki:Mainpage-description (for use in MediaWiki:Sidebar and so on).
+The Main Page is the page that the wiki goes to if no page is specified in parameters to index.php. It is also the page that one is taken to if one clicks on the logo or on the Main page item on the sidebar. The title at which the main page is accessed can be modified by changing
 
-To change which page is the main page, in the search bar, type MediaWiki:Mainpage. Then edit it so its content is the name of the page you want to be the main page. MediaWiki:Mainpage should always contain the title, because it is a system message that is reserved for the title of the main page, so don't change it to MediaWiki:x.
+MediaWiki:Mainpage
+
+The term "main page" and its translations can still be accessed via the system message
+
+MediaWiki:Mainpage-description
+for use in
+MediaWiki:Sidebar and so on.
+
+To change which page is the main page, in the search bar, type "MediaWiki:Mainpage". Then edit it so its content is the name of the page you want to be the main page. "MediaWiki:Mainpage" should always contain the title, because it is a system message that is reserved for the title of the main page, so don't change it to MediaWiki:x.
 
 The title displayed on the Main Page can be customized by editing MediaWiki:Mainpage-title and MediaWiki:Mainpage-title-loggedin. If created but set to the empty string, no title will be shown.
