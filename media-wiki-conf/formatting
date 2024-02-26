@@ -1,0 +1,76 @@
+Italic text	
+''italic''
+
+Bold text	
+'''bold'''
+
+
+Bold and italic	
+'''''bold & italic'''''
+
+Escape wiki markup	
+<nowiki>no [[wiki]] ''markup''</nowiki>
+no [[wiki]] ''markup''
+
+
+== Level 2 ==
+
+=== Level 3 ===
+
+==== Level 4 ====
+
+===== Level 5 =====
+
+====== Level 6 ======
+
+Horizontal rule	
+Text before
+----
+Text after
+
+
+* Start each line
+* with an [[Wikipedia:asterisk|asterisk]] (*).
+** More asterisks give deeper
+*** and deeper levels.
+* Line breaks <br>don't break levels.
+*** But jumping levels creates empty space.
+Any other start ends the list.
+
+* combine bullet list
+** with definition 
+::- definition
+** creates empty space
+
+* combine bullet list
+** with definition 
+*:- definition
+** without empty spaces
+
+*bullet list
+:- definition
+:* sublist that doesn't create empty
+:* spaces after definition
+
+* Start each line
+* with an [[Wikipedia:asterisk|asterisk]] (*).
+** More asterisks give deeper
+*** and deeper levels.
+* Line breaks <br>don't break levels.
+*** But jumping levels creates empty space.
+Any other start ends the list.
+
+* combine bullet list
+** with definition 
+::- definition
+** creates empty space
+
+* combine bullet list
+** with definition 
+*:- definition
+** without empty spaces
+
+*bullet list
+:- definition
+:* sublist that doesn't create empty
+:* spaces after definition
