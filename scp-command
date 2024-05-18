@@ -1,0 +1,97 @@
+Untuk melakukan copy file via SSH, Anda dapat menggunakan perintah `scp` (Secure Copy Protocol). Berikut adalah langkah-langkah dasar untuk menggunakan `scp`:
+
+### 1. Menyalin File dari Lokal ke Remote
+
+Jika Anda ingin menyalin file dari komputer lokal Anda ke server remote, gunakan perintah berikut:
+
+```bash
+scp /path/to/local/file username@remote_host:/path/to/remote/directory
+```
+
+Contoh:
+
+```bash
+scp /home/user/document.txt user@192.168.1.10:/home/user/documents/
+```
+
+### 2. Menyalin File dari Remote ke Lokal
+
+Untuk menyalin file dari server remote ke komputer lokal Anda, gunakan perintah berikut:
+
+```bash
+scp username@remote_host:/path/to/remote/file /path/to/local/directory
+```
+
+Contoh:
+
+```bash
+scp user@192.168.1.10:/home/user/documents/document.txt /home/user/
+```
+
+### 3. Menyalin Direktori Secara Rekursif
+
+Untuk menyalin seluruh direktori beserta isinya, tambahkan opsi `-r` (recursive):
+
+- Dari lokal ke remote:
+
+  ```bash
+  scp -r /path/to/local/directory username@remote_host:/path/to/remote/directory
+  ```
+
+  Contoh:
+
+  ```bash
+  scp -r /home/user/photos user@192.168.1.10:/home/user/
+  ```
+
+- Dari remote ke lokal:
+  ```bash
+  scp -r username@remote_host:/path/to/remote/directory /path/to/local/directory
+  ```
+  Contoh:
+  ```bash
+  scp -r user@192.168.1.10:/home/user/photos /home/user/
+  ```
+
+### 4. Menentukan Port SSH
+
+Jika server SSH Anda berjalan di port non-standar, Anda bisa menentukan port dengan opsi `-P`:
+
+```bash
+scp -P port_number /path/to/local/file username@remote_host:/path/to/remote/directory
+```
+
+Contoh:
+
+```bash
+scp -P 2222 /home/user/document.txt user@192.168.1.10:/home/user/documents/
+```
+
+### 5. Menggunakan Kunci SSH
+
+Jika Anda menggunakan kunci SSH untuk otentikasi, Anda dapat menambahkannya dengan opsi `-i`:
+
+```bash
+scp -i /path/to/private/key /path/to/local/file username@remote_host:/path/to/remote/directory
+```
+
+Contoh:
+
+```bash
+scp -i ~/.ssh/id_rsa /home/user/document.txt user@192.168.1.10:/home/user/documents/
+```
+
+### Contoh Praktis
+
+- Menyalin file `document.txt` dari lokal ke remote:
+
+  ```bash
+  scp document.txt user@192.168.1.10:/home/user/documents/
+  ```
+
+- Menyalin file `document.txt` dari remote ke lokal:
+  ```bash
+  scp user@192.168.1.10:/home/user/documents/document.txt .
+  ```
+
+Dengan menggunakan `scp`, Anda dapat dengan mudah dan aman menyalin file antara komputer lokal dan server remote melalui SSH.
