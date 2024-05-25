@@ -1,0 +1,49 @@
+open <alamat_server_ftp>
+
+user atau username: Menyertakan nama pengguna (username) saat login.
+
+user <nama_pengguna>
+
+pass atau password: Menyertakan kata sandi (password) saat login.
+
+pass <kata_sandi>
+
+ls atau dir: Menampilkan daftar file di direktori saat ini di server.
+
+ls
+
+cd atau cwd: Mengubah direktori di server.
+
+cd <nama_direktori>
+
+get: Mengunduh file dari server ke komputer lokal.
+
+get <nama_file>
+
+put: Mengunggah file dari komputer lokal ke server.
+
+put <nama_file>
+
+delete atau rm: Menghapus file di server.
+
+delete <nama_file>
+
+mkdir: Membuat direktori baru di server.
+
+mkdir <nama_direktori>
+
+rmdir: Menghapus direktori di server.
+
+rmdir <nama_direktori>
+
+pwd: Menampilkan direktori kerja saat ini di server.
+
+pwd
+
+bye atau quit: Keluar dari sesi FTP.
+
+bye
+
+help: Menampilkan informasi bantuan atau daftar perintah FTP.
+
+help
